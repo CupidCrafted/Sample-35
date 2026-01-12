@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-nyabili | CupidCrafted</title>
+    <style>
+        body { background: #fff5f7; font-family: 'Helvetica Neue', sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; text-align: center; }
+        .card { width: 90%; max-width: 400px; padding: 30px; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        h1 { color: #d32f2f; font-size: 1.8rem; margin-bottom: 10px; }
+        #message-area { color: #555; font-size: 1.15rem; min-height: 80px; line-height: 1.5; margin-bottom: 30px; font-weight: 500; }
+
+        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        button { border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: bold; font-family: inherit; }
+        #yesBtn { background: #e91e63; color: white; padding: 18px 60px; font-size: 1.3rem; min-width: 220px; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); }
+        #noBtn { background: #b0b0b0; color: white; padding: 12px 30px; font-size: 1rem; white-space: nowrap; }
+
+        #success-img { width: 100%; max-width: 320px; border-radius: 20px; display: none; margin-top: 20px; border: 2px solid #FFD700; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="content">
+        <h1 id="title">N-nyabili, [Name] ❤️</h1>
+        <div id="message-area">Will you be my Valentine?</div>
+
+        <div class="btn-container" id="btn-group">
+            <button id="yesBtn" onclick="celebrate()">YES! 😍</button>
+            <button id="noBtn" onclick="changeNo()">No 😢</button>
+        </div>
+
+        <img id="success-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
+    </div>
+
+    <script>
+        let yesSize = 1;
+        let noClickCount = 0;
+
+        const noTexts = [
+            "M-bori yadda...",
+            "Miri ka a niŋ lala 🥺",
+            "N-suhu tima, think again",
+            "Please change your answer",
+            "I'm not accepting No!"
+        ];
+
+        function changeNo() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            const messageArea = document.getElementById('message-area');
+
+            if (noClickCount < noTexts.length) {
+                noBtn.innerHTML = noTexts[noClickCount];
+                noClickCount++;
+            }
+
+            yesSize += 0.35;
+            yesBtn.style.transform = `scale(${yesSize})`;
+
+            messageArea.innerHTML = "Please baby, don't do that. <br> <small>Try again and change your answer.</small>";
+            messageArea.style.color = "#d32f2f";
+        }
+
+        function celebrate() {
+            const title = document.getElementById('title');
+            const messageArea = document.getElementById('message-area');
+            const btnGroup = document.getElementById('btn-group');
+            const successImg = document.getElementById('success-img');
+
+            title.innerHTML = "N-suhu palli! ❤️";
+            title.style.color = "#FFD700";
+            
+            // New Valentine's focused closing
+            messageArea.innerHTML = "I am so happy you said yes. Get ready for an unforgettable Valentine's date. I'll make sure it's as beautiful as you are.";
+            messageArea.style.color = "white";
+            
+            btnGroup.classList.add('hidden');
+            successImg.style.display = 'block';
+            
+            document.body.style.background = "#121212"; 
+            document.body.style.color = "white";
+        }
+    </script>
+</body>
+</html>
